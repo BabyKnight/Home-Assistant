@@ -1,0 +1,61 @@
+#!/usr/local/bin/bash
+
+#TRUSTED_HOST="pypi.doubanio.com"
+INDEX_URL="http://pypi.doubanio.com/simple/"
+
+function clean()
+{
+    # clean up existing virtual env
+    set -x
+    rm activate
+    rm -rf environ
+    set +x
+    echo "Clean up virtual env, Done!"
+}
+
+function boot()
+{
+    # create virtual env and install python pakage
+    if [ ! -d "environ" ]; then
+        virtualenv environ
+        #virtualenv env --system-site-packages
+    fi
+
+    ln -sf environ/bin/activate
+    . ./activate
+
+    pip install --upgrade -i $INDEX_URL -r requirements.pip \
+        || die "Could not install python packages ! Cannot continue"
+
+    # upgrade pip
+    #pip install --upgrade -i $INDEX_URL pip
+
+    # Install wheel
+    #pip install --upgrade -i $INDEX_URL  wheel \
+    #    || die "Could not install wheel ! Cannot continue"
+
+    #pip install --upgrade -i $INDEX_URL --trusted-host -r requirements.pip \
+    #    || die "Could not install python packages ! Cannot continue"
+}
+
+show_usage() {
+    echo "Invalid arguments"
+    echo "Usage: $0 [--clean] / [None]"
+    exit 1
+}
+
+if (( ! "$#" ));then
+    boot
+else
+     case "$1" in
+        --clean)
+            clean
+            ;;
+        --help)
+            show_usage
+            ;;
+        *)
+            show_usage
+            ;;
+    esac
+fi
