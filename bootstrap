@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#TRUSTED_HOST="pypi.doubanio.com"
+TRUSTED_HOST="pypi.doubanio.com"
 INDEX_URL="http://pypi.doubanio.com/simple/"
 
 function clean()
@@ -24,7 +24,7 @@ function boot()
     ln -sf environ/bin/activate
     . ./activate
 
-    pip install --upgrade -i $INDEX_URL -r requirements.pip \
+    pip install --upgrade -i $INDEX_URL --trusted-host $TRUSTED_HOST -r requirements.pip \
         || die "Could not install python packages ! Cannot continue"
 
     # upgrade pip
