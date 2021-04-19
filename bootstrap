@@ -17,8 +17,8 @@ function boot()
 {
     # create virtual env and install python pakage
     if [ ! -d "environ" ]; then
-        virtualenv environ
-        #virtualenv env --system-site-packages
+        # using python3 built-in venv module
+        python3 -m venv ./environ
     fi
 
     ln -sf environ/bin/activate
