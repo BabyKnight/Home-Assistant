@@ -3,6 +3,20 @@
 TRUSTED_HOST="pypi.doubanio.com"
 INDEX_URL="http://pypi.doubanio.com/simple/"
 
+function install_sys_pkg()
+{
+		# make sure python3 virtual env is installed
+		echo "Check if python3-venv is installed..."
+		pkg='python3-venv'
+		if [ `dpkg -l | grep $pkg | wc -l` -ne 0 ]; then
+				echo "[ INSTALLED ]"
+		else
+				echo "[ NOT INSTALLED ]"
+				sudo apt install python3-venv
+		fi
+}
+
+
 function clean()
 {
     # clean up existing virtual env
@@ -15,6 +29,8 @@ function clean()
 
 function boot()
 {
+		# check and install python virtual env
+		install_sys_pkg
     # create virtual env and install python pakage
     if [ ! -d "environ" ]; then
         # using python3 built-in venv module

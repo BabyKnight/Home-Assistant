@@ -1,3 +1,4 @@
 activate
 environ
 __pycache__
+*.swp
