@@ -1,5 +1,17 @@
 #!/bin/bash
 
+DOUBAN_HOST="pypi.doubanio.com"
+DOUBAN_URL="http://pypi.doubanio.com/simple/"
+
+TSINGHUA_HOST="pypi.tuna.tsinghua.edu.cn"
+TSINGHUA_URL="https://pypi.tuna.tsinghua.edu.cn/simple/"
+
+ALIYUN_HOST="mirrors.aliyun.com"
+ALIYUN_URL="https://mirrors.aliyun.com/pypi/simple/"
+
+
+
+
 TRUSTED_HOST="pypi.doubanio.com"
 INDEX_URL="http://pypi.doubanio.com/simple/"
 
