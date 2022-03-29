@@ -28,6 +28,8 @@ DEBUG = True
 # add '*' to allowed hosts for dev purposes
 ALLOWED_HOSTS = ['*']
 
+# auto append slash in the end of url
+APPEND_SLASH = True
 
 # Application definition
 

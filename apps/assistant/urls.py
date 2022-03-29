@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+		# resirect all request to the portal app except admin
     path('', include('portal.urls')),
     path('admin/', admin.site.urls),
 ]
