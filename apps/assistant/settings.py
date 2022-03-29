@@ -15,10 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-qra)2=gbu)4=y^ia3y9g33l@1+^v!byl^-*=%+6h8aka83b5hx'
 
@@ -75,12 +71,15 @@ WSGI_APPLICATION = 'assistant.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'HomeAssistant.db',
+				#'USER': '',
+				#'PASSWORD': '',
+				#'HOST': '',
+				#'PORT': '',
     }
 }
 
