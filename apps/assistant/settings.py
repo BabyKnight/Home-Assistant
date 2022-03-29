@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # auto append slash in the end of url
-APPEND_SLASH = True
+# APPEND_SLASH = True
 
 # Application definition
 
