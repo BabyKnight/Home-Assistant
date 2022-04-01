@@ -12,14 +12,22 @@ class User(models.Model):
 				('U', 'Unknown'),
 		]
 
+		user_name = models.CharField(max_length=30, unique=True)
+		password = models.CharField(max_length=128)
 		first_name = models.CharField(max_length=30)
 		last_name = models.CharField(max_length=30)
 		age = models.IntegerField(null=True, blank=True)
 		gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='U')
 		address = models.CharField(null=True, blank=True, max_length=50)
-		email = models.EmailField(null=True, blank=True)
+		email = models.EmailField(null=True, blank=True, max_length=50, unique=True)
 		phone = models.CharField(null=True, blank=True, max_length=11)
 		is_superuser = models.BooleanField(default=False)
-		create_date = models.DateTimeField(auto_now_add=True)
+		is_active = models.BooleanField(default=True)
+		registered_date = models.DateTimeField(auto_now_add=True)
 		last_login = models.DateField(null=True, blank=True)
 		login_ip = models.GenericIPAddressField(null=True, blank=True)
+
+		@property
+		def full_name(self):
+				# The user is identified by user name or email address
+				return "{} {}".format(first_name, last_name)
