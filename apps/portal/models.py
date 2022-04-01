@@ -19,7 +19,7 @@ class User(models.Model):
 		age = models.IntegerField(null=True, blank=True)
 		gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='U')
 		address = models.CharField(null=True, blank=True, max_length=50)
-		email = models.EmailField(null=True, blank=True, max_length=50, unique=True)
+		email = models.EmailField(null=True, blank=True, max_length=50)
 		phone = models.CharField(null=True, blank=True, max_length=11)
 		is_superuser = models.BooleanField(default=False)
 		is_active = models.BooleanField(default=True)
@@ -30,4 +30,29 @@ class User(models.Model):
 		@property
 		def full_name(self):
 				# The user is identified by user name or email address
-				return "{} {}".format(first_name, last_name)
+				return "{} {}".format(self.first_name, self.last_name)
+
+
+		def create_user(self, user_name, password, first_name, last_name,
+						age=None, gender='U', address=None, emaili=None, phone=None,
+						is_superuser=False, login_ip=None):
+				"""
+				Function to create user
+				return: {function_call_status: msg}
+				"""
+				user = User(
+								user_name=user_name,
+								password=password,
+								first_name=first_name,
+								last_name=last_name,
+								age=age,
+								gender=gender,
+								address=address,
+								email=email,
+								phone=phone,
+								is_superuser=is_superuser,
+								is_active=True,
+								login_ip=login_ip,
+								)
+				user.save()
+
