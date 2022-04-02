@@ -1,4 +1,4 @@
-"""assistant URL Configuration
+"""project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -18,6 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
 		# resirect all request to the portal app except admin
-    path('', include('portal.urls')),
+    path('', include('home.urls')),
     path('admin/', admin.site.urls),
 ]
