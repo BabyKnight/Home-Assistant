@@ -1,25 +1,24 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 	<meta charset="utf-8">
 	<title>Home Assistant - Welcome</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-<style>
-
-body{
-	width: 100%;
-	height: 100%;
-  	background: linear-gradient(100deg, #a9d1f1, #cfb9dc);
-}
-
-</style>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+	<link rel="shortcut icon" href="{% static 'common/img/favicon.ico' %}" />
+	<link rel="bookmark" href="{% static 'common/img/favicon.ico' %}" type="image/x-icon"　/>
+	<script src="{% static 'common/js/jquery-3.6.0.min.js' %}"></script>
+	<link href="{% static 'common/css/bootstrap.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'home/css/welcome.css' %}" rel="stylesheet" />
+	<link href="{% static 'home/css/anim-text.css' %}" rel="stylesheet" />
 </head>
+
 <body>
-	<div class="main-container">
+	<div class="container">
 		<span class="txt anim-text-flow title">Welcome Home!</span>
 		<div class="subtitle">
-			<span>Initializing...</span>
+				<span>Copyright © 2022 - 2032 Vincent Hu. All Rights Reserved</span>
 		</div>
 	</div>
 	
@@ -27,14 +26,7 @@ body{
 </body>
 
 
-<script type="text/javascript">
-		onload=function(){
-			setInterval(redirect_to_login, 3000)
-		};
-		function redirect_to_login() {
-			location.href="/login/";
-		}
-
-</script>
+<script src="{% static 'home/js/anim-text.js' %}"></script>
+<script src="{% static 'home/js/welcome.js' %}"></script>
 
 </html>
