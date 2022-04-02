@@ -18,9 +18,10 @@ body{
 <body>
 	<div class="main-container">
 		<div class="signupFrm">
-    <form action="/user_login/" method='post'>
+    <form action="/login/" method='post'>
 			<input id="" type="text" name="user_name" placeholder="User Name">
 			<input type="submit" value="OK">
+			{% csrf_token %}
     </form>
   </div>
 
