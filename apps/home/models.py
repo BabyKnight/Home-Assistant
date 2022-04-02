@@ -17,6 +17,7 @@ class User(models.Model):
 		first_name = models.CharField(max_length=30)
 		last_name = models.CharField(max_length=30)
 		age = models.IntegerField(null=True, blank=True)
+		# birthday
 		gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='U')
 		address = models.CharField(null=True, blank=True, max_length=50)
 		email = models.EmailField(null=True, blank=True, max_length=50)

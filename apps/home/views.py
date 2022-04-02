@@ -7,10 +7,15 @@ def welcome(request):
 		template_name = 'welcome.html'
 		return render(request, template_name)
 
-def portal(request, lang='en'):
-		return HttpResponse("[%s] Welcome Home! This is The portal page of Home-Assistant" % lang)
+def home(request, lang='en'):
+		return HttpResponse("[%s] Welcome Home! This is The home page of Home-Assistant" % lang)
 
 def login(request):
-		print(request.method)
 		template_name = 'login.html'
-		return render(request, template_name)
+		if request.method == 'GET':
+				return render(request, template_name)
+		elif request.method == 'POST':
+				import pdb; pdb.set_trace()
+				#register(request)
+				status = {'msg': "Welcome Home!"}
+				return render(request, template_name, status)

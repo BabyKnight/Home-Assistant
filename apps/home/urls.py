@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
 		path('', views.welcome, name='welcome'),
-		path('portal/', views.portal, name='portal'),
-		re_path(r'^portal/(?P<lang>\w+)/$', views.portal, name='portal'),
+		path('home/', views.home, name='home'),
+		re_path(r'^home/(?P<lang>\w+)/$', views.home, name='home'),
 		path('login/', views.login, name='login'),
 ]
