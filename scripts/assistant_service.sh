@@ -30,7 +30,7 @@ start_dev_server() {
 # production mode, using gunicorn to manage django website
 production_server() {
 	source "$PROJECT_ROOT_PATH/activate"
-	gunicorn  assistant.wsgi:application --chdir "$DJANGO_PROJECT_PATH" --bind 0.0.0.0:8080
+	exec gunicorn assistant.wsgi:application --chdir "$DJANGO_PROJECT_PATH" --bind 0.0.0.0:8080
 }
 
 
