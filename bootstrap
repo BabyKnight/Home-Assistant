@@ -29,6 +29,16 @@ function install_sys_pkg()
 }
 
 
+function get_and_set_env()
+{
+	default_root_path=$(pwd)
+	project_path="$default_root_path/apps"
+
+	echo "$project_path"
+	echo "$default_root_path"
+}
+
+
 function clean()
 {
     # clean up existing virtual env
@@ -39,10 +49,17 @@ function clean()
     echo "Clean up virtual env, Done!"
 }
 
+
 function boot()
 {
-		# check and install python virtual env
-		install_sys_pkg
+	# check and install python virtual env
+	install_sys_pkg
+
+	# cd to the directory of bootstrap script
+	cd "$(dirname $0)"
+	# get project absolute path and used for env setup later
+	get_and_set_env
+
     # create virtual env and install python pakage
     if [ ! -d "environ" ]; then
         # using python3 built-in venv module
@@ -66,10 +83,12 @@ function boot()
     #    || die "Could not install python packages ! Cannot continue"
 }
 
+
 show_usage() {
     echo "Usage: $0 [--clean] / [None]"
     exit 1
 }
+
 
 if (( ! "$#" ));then
     boot
