@@ -67,7 +67,6 @@ function boot()
 }
 
 show_usage() {
-    echo "Invalid arguments"
     echo "Usage: $0 [--clean] / [None]"
     exit 1
 }
@@ -83,6 +82,7 @@ else
             show_usage
             ;;
         *)
+			echo "Invalid arguments"
             show_usage
             ;;
     esac
