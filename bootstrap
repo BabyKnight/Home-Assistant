@@ -9,9 +9,6 @@ TSINGHUA_URL="https://pypi.tuna.tsinghua.edu.cn/simple/"
 ALIYUN_HOST="mirrors.aliyun.com"
 ALIYUN_URL="https://mirrors.aliyun.com/pypi/simple/"
 
-
-
-
 TRUSTED_HOST="pypi.doubanio.com"
 INDEX_URL="http://pypi.doubanio.com/simple/"
 
@@ -31,11 +28,18 @@ function install_sys_pkg()
 
 function get_and_set_env()
 {
-	default_root_path=$(pwd)
-	project_path="$default_root_path/apps"
+	PROJECT_ROOT_PATH=$(pwd)
+	DJANGO_PROJECT_PATH="$PROJECT_ROOT_PATH/apps"
 
-	echo "$project_path"
-	echo "$default_root_path"
+	echo "PROJECT_ROOT_PATH is - [ $PROJECT_ROOT_PATH ]"
+	echo "DJANGO_PROJECT_PATH is - [ $DJANGO_PROJECT_PATH ]"
+
+	# save project root path and django project path into file
+	# always rewrite the path env to file
+	echo "PROJECT_ROOT_PATH=$PROJECT_ROOT_PATH" > "$PROJECT_ROOT_PATH/scripts/path_env"
+	echo "DJANGO_PROJECT_PATH=$DJANGO_PROJECT_PATH" >> "$PROJECT_ROOT_PATH/scripts/path_env"
+
+	echo "PATH ENV save successfully!"
 }
 
 
