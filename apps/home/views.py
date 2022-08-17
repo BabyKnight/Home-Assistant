@@ -15,7 +15,6 @@ def login(request):
 		if request.method == 'GET':
 				return render(request, template_name)
 		elif request.method == 'POST':
-				import pdb; pdb.set_trace()
 				#register(request)
 				status = {'msg': "Welcome Home!"}
 				return render(request, template_name, status)
