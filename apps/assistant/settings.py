@@ -124,9 +124,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / "static"
 
-STATICFILES_DIRS = [
-		BASE_DIR / "static",
-]
+#STATICFILES_DIRS = [
+#		BASE_DIR / "static",
+#]
 
 # Enable WhiteNoise's GZip compression of static assets.
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
