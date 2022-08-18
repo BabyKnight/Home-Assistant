@@ -73,7 +73,7 @@ function boot()
     ln -sf environ/bin/activate
     . ./activate
 
-    pip install --upgrade -i $INDEX_URL --trusted-host $TRUSTED_HOST -r requirements.pip \
+    pip install --upgrade -i $INDEX_URL --trusted-host $TRUSTED_HOST -r requirements.txt \
         || die "Could not install python packages ! Cannot continue"
 
     # upgrade pip
@@ -83,7 +83,7 @@ function boot()
     #pip install --upgrade -i $INDEX_URL  wheel \
     #    || die "Could not install wheel ! Cannot continue"
 
-    #pip install --upgrade -i $INDEX_URL --trusted-host -r requirements.pip \
+    #pip install --upgrade -i $INDEX_URL --trusted-host -r requirements.txt \
     #    || die "Could not install python packages ! Cannot continue"
 }
 
