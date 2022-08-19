@@ -123,11 +123,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
+# store all static files during dev phase
 STATICFILES_DIRS = [
 		join(BASE_DIR,'static'),
 ]
+
+# store all static files when execute collectstatic, for production purpose
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # Enable WhiteNoise's GZip compression of static assets.
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
