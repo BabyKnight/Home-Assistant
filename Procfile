@@ -1,1 +1,1 @@
-web: gunicorn assistant.wsgi --chdir "apps"
+scripts/heroku_procfile
