@@ -129,6 +129,7 @@ STATICFILES_DIRS = [
 ]
 
 # store all static files when execute collectstatic, for production purpose
+# staticfiles will disable when DEBUG is False
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
