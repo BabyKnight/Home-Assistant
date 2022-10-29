@@ -7,4 +7,5 @@ urlpatterns = [
 		path('home/', views.home, name='home'),
 		re_path(r'^home/(?P<lang>\w+)/$', views.home, name='home'),
 		path('login/', views.login, name='login'),
+		path('register/', views.register, name='register'),
 ]

@@ -20,19 +20,29 @@ body{
 </head>
 <body>
 	<div class="main-container">
+
 		<div class="title">
-			<h3>Sign in your account</h3>
+			<h3>Sign up your account</h3>
 		</div>
-		<!-- login form -->
-		<div class="loginFrm">
-    		<form action="/login/" method='post' id="login">
+		
+		<!-- sign up form-->
+		<div class="signupFrm">
+    		<form action="/register/" method='post' id="register">
 				<input id="user_name" type="text" name="user_name" placeholder="User Name">
+				<input id="first_name" type="text" name="first_name" placeholder="First Name">
+				<input id="last_name" type="text" name="last_name" placeholder="Last Name">
+				<input id="age" type="text" name="age" placeholder="age">
+				<input id="gender" type="text" name="gender" placeholder="gender">
+				<input id="address" type="text" name="address" placeholder="address">
+				<input id="email" type="text" name="email" placeholder="email">
+				<input id="phone" type="text" name="phone" placeholder="phone">
 				<input id="password" type="password" name="password">
-				<input type="submit" value="Login">
+				<input id="superuser" type="text" name="superuser" placeholder="Is superuser?">
+				<input type="submit" value="Signup">
 				{% csrf_token %}
     		</form>
-  		</div>
-		<p>Don't have an acount?</p><a class="register_link" href="/register/">Sign up</a>
+		</div>
+		<p>Already have an acount?</p><a class="login_link" href="/login/">Sign in</a>
 
 		<h4>{{ msg }}</h4>
 
