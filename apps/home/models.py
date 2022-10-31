@@ -24,6 +24,8 @@ class UserProfile(models.Model):
 				# The user is identified by user name or email address
 				return "{} {}".format(self.user.first_name, self.user.last_name)
 
+		class Meta:
+			verbose_name = 'User Profile'
 
 		def __str__(self):
 			return "{}: - {}".format(self.user.id, self.full_name)
