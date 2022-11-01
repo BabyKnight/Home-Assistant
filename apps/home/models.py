@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.contrib import admin
 
 
 class UserProfile(models.Model):
@@ -30,3 +31,5 @@ class UserProfile(models.Model):
 		def __str__(self):
 			return "{}: - {}".format(self.user.id, self.full_name)
 
+# register UserProfile model to be displayed in admin page
+admin.site.register(UserProfile)
