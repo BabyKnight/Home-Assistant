@@ -19,9 +19,8 @@ def login(request):
 		return render(request, template_name)
 
 	elif request.method == 'POST':
-		form_data = request.POST
-		user_name = form_data.get('user_name')
-		password = form_data.get('password')
+		user_name = request.POST.get('user_name')
+		password = request.POST.get('password')
 
 		try:
 			user = User.objects.get(username = user_name)
@@ -49,23 +48,32 @@ def register(request):
 		return render(request, template_name, {'form': reg_form})
 
 	elif request.method == 'POST':
-		form_data = request.POST
-		user_name = form_data.get('user_name')
-		first_name = form_data.get('first_name')
-		last_name = form_data.get('last_name')
-		password = form_data.get('password')
 
-		gender = form_data.get('gender')
-		birthday = form_data.get('birthday')
-		address = form_data.get('address')
-		email = form_data.get('email')
-		phone = form_data.get('phone')
+		# required info for user registration
+		user_info = {
+				'user_name': request.POST.get('user_name'),
+				# password confirm should be verified in the frontend already
+				'password': request.POST.get('password'),
+				}
+
+		# aditional profile info which can be empty and updated later
+		profile_detail = {
+				'first_name': request.POST.get('first_name'),
+				'last_name': request.POST.get('last_name'),
+				'gender': request.POST.get('gender'),
+				'birthday': request.POST.get('birthday'),
+				'address': request.POST.get('address'),
+				'email': request.POST.get('email'),
+				'phone': request.POST.get('phone'),
+				}
+
+
 
 		# call UserCreationForm to ceate user
 		tmp_form = {
 			'username': user_name,
 			'password1': password,
-			'password2': password,
+			'password2': confirm_password,
 			}
 		request_form = UserCreationForm(tmp_form)
 

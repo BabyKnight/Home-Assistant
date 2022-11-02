@@ -24,15 +24,16 @@
 				<input id="user_name" type="text" name="user_name" placeholder="User Name">
 				<input id="first_name" type="text" name="first_name" placeholder="First Name">
 				<input id="last_name" type="text" name="last_name" placeholder="Last Name">
+
 				<input id="birthday" type="text" name="birthday" placeholder="Birthday">
 				<input id="gender" type="text" name="gender" placeholder="gender">
-				<input id="address" type="text" name="address" placeholder="address">
-				<input id="email" type="text" name="email" placeholder="email">
-				<input id="phone" type="text" name="phone" placeholder="phone">
-				<input id="password" type="password" name="password">
-				<input id="superuser" type="text" name="superuser" placeholder="Is superuser?">
+				<input id="address" type="text" name="address" placeholder="Address">
+				<input id="email" type="text" name="email" placeholder="Email">
+				<input id="phone" type="text" name="phone" placeholder="Phone Number">
+				<input id="password" type="password" name="Enter Password">
+				<input id="confirm_password" type="password" name="Confirm Password">
 				<input type="submit" value="Signup">
-				{{ form.as_p }}
+
 				{% csrf_token %}
     		</form>
 		</div>
