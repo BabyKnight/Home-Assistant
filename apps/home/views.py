@@ -71,7 +71,12 @@ def register(request):
 				}
 
 		res = create_account(user_name, password, profile_detail)
-		return render(request, template_name, {'st': res})
+		reg_res = {'st': res}
+		if res == 0:
+			reg_res['msg'] = 'Account Created!'
+		else:
+			reg_res['msg'] = 'Account Create Failed with invalid input!'
+		return render(request, template_name, reg_res)
 
 def logout(request, lang='en'):
 	return HttpResponse("[%s] Welcome Home! This is The home page of Home-Assistant" % lang)
