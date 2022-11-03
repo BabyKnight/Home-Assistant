@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
 from home.models import UserProfile
+from home.utils import create_account
 
 def welcome(request):
 	#return HttpResponse("Welocme Home!")
@@ -42,7 +43,11 @@ def login(request):
 
 
 def register(request):
+	"""
+	register view
+	"""
 	template_name = 'register.html'
+
 	if request.method == 'GET':
 		reg_form = UserCreationForm()
 		return render(request, template_name, {'form': reg_form})
@@ -50,74 +55,23 @@ def register(request):
 	elif request.method == 'POST':
 
 		# required info for user registration
-		user_info = {
-				'user_name': request.POST.get('user_name'),
-				# password confirm should be verified in the frontend already
-				'password': request.POST.get('password'),
-				}
+		user_name = request.POST['user_name']
+		# password confirm should be verified in the frontend already
+		password = request.POST['password']
 
 		# aditional profile info which can be empty and updated later
 		profile_detail = {
-				'first_name': request.POST.get('first_name'),
-				'last_name': request.POST.get('last_name'),
-				'gender': request.POST.get('gender'),
-				'birthday': request.POST.get('birthday'),
-				'address': request.POST.get('address'),
-				'email': request.POST.get('email'),
-				'phone': request.POST.get('phone'),
+				'first_name': request.POST['first_name'],
+				'last_name': request.POST['last_name'],
+				'gender': request.POST['gender'],
+				'birthday': request.POST['birthday'],
+				'address': request.POST['address'],
+				'email': request.POST['email'],
+				'phone': request.POST['phone'],
 				}
 
-
-
-		# call UserCreationForm to ceate user
-		tmp_form = {
-			'username': user_name,
-			'password1': password,
-			'password2': confirm_password,
-			}
-		request_form = UserCreationForm(tmp_form)
-
-		# return to template if the data in request form is invalid
-		if not request_form.is_valid():
-			reg_form = UserCreationForm()
-			status = {
-					'status_code': -1,
-					'msg': 'Invalid User name or password'
-					}
-			return render(request, template_name, {'form': reg_form, 'st': status, 'msg': 'Invalid uer name or password'})
-
-		else:
-			user = request_form.save()
-			user.first_name = first_name
-			user.last_name = last_name
-			user.email = email
-			user.save()
-
-			user_profile = UserProfile(user=user)
-			user_profile.gender = gender
-			user_profile.birthday = birthday
-			user_profile.address = address
-			user_profile.phone = phone
-			#user_profile.login_ip = None
-			user_profile.save()
-			reg_form = UserCreationForm()
-			status = {
-					'status_code': 0,
-					'msg': 'User created'
-					}
-
-			return render(request, template_name, {'form': reg_form, 'st': status})
-
-		"""
-		# Use customize method to create user, without verify username and password format
-		try:
-			user_exist = User.objects.get(username=user_name)
-		except ObjectDoesNotExist:
-			print("username is already exist!")
-			status = {'msg': "Username is already exist!"}
-			return render(request, template_name, {'form': reg_form})
-		user = User(username=user_name, password=make_password(password))
-		"""
+		res = create_account(user_name, password, profile_detail)
+		return render(request, template_name, {'st': res})
 
 def logout(request, lang='en'):
 	return HttpResponse("[%s] Welcome Home! This is The home page of Home-Assistant" % lang)
