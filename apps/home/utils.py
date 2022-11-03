@@ -1,52 +1,14 @@
 import re
 from django.contrib.auth.models import User
+from home.models import UserProfile
 
 
-class User_Info():
+def create_account(user_name, password, profile_detail=None):
 	"""
-	Struct for User info basic fields which is required while creating a user
-	attributes include user_name and password
-	user_name: A valid username should less than 30 characters, Letters, digits, '-', '_' and '.' only
-	password: A valid password length should between 6(6 included) ~ 30(30 included), any characters
-	"""
-	user_name = None
-	password = None
-	is_valid = False
+	Method to register a user with profile to create an account
+	user_name: <str>
+	password: <str>
 
-	def __init__(self, user_info_dict):
-		"""
-		Initializes a user info instance with a dict
-		"""
-		# if argument is not even a dict type
-		# then initializes a user info instance without any value
-		if not isinstance(user_info_dict):
-			print("Argument for User info initializes is not an <dict> type!")
-			pass
-		else:
-			self.user_name = user_info_dict.get('user_name')
-			self.password = user_info_dict.get('password')
-
-	def is_user_name_valid(self):
-		res = is_username_valid(self.user_name)
-		return res.get('status')
-
-	def is_password_valid(self):
-		res = is_password_valid(self.password)
-		return res.get('status')
-
-
-class Profile_Detail():
-	pass
-
-def user_registration(user_info, profile_detail=None):
-	"""
-	Method to register a user with profile
-
-	Expected user_info struct:
-		{
-			'user_name': USERNAME,
-			'password': PASSWORD,
-		}
 	expected profile_detail struct:
 		{
 			'first_name': FIRST_NAME,
@@ -58,21 +20,46 @@ def user_registration(user_info, profile_detail=None):
 			'phone': PHONE,
 		}
 
-	Return type: dict
-	Return: {'status': bool, 'msg': str}
+	Return type: int
+	Return: status code (decimal value of binary flag)
+			[ - 0  0  0]
+			    ^  ^  ^
+				f1 f2 f3
+			[f1]  - is password valid, 0 for valid, 1 for invalid
+			[f2]  - is user name valid, 0 for valid, 1 for invalid
+			[f3]  - is user name available, 0 for avaliable, 1 for not available
+
+			[ 0]  - account created successfully
+			[-1]  - invalid user name
+			[-2]  - user name not available
+			[-4]  - invalid password
+			[-5]  - invalid password and invalid user name
+			[-6]  - invalid password an user name not available
 	"""
 
+	status_code = 0
 	# verify user input
-	is_username_valid(user_info.get('user_name'))
-	is_password_valid(user_info.get('password'))
+	if not is_username_valid(user_name):
+		status_code += -1
 
-	user = User.objects.create_user(user_info.get('user_name'), user_info.get('password'))
+	elif not is_username_available(user_name):
+		status_code += -2
+
+	if not is_password_valid(password):
+		status_code += -4
+
+	if status_code != 0:
+		return status_code
+
+	# create user
+	user = User.objects.create_user(username=user_name, password=password)
 
 	# create User Profile
-	user_profile = User_Profile()
+	user_profile = UserProfile()
 	user_profile.user = user
 	user_profile.save()
 
+	return status_code
 
 
 def set_user_profile(profile_detail):
@@ -86,60 +73,53 @@ def is_username_valid(username):
 	"""
 	Method to verify username
 	Valid username should less than 30 characters, Letters, digits, '-', '_' and '.' only
-	Return type: dict
-	Return: {'status': bool, 'msg': str}
+	Return type: bool
+	Return: True/False
 	"""
 
 	# valid username length should between 1 ~ 30
 	if len(username) <= 0 or len(username) > 30:
-		res = {
-				'status': False,
-				'msg': 'Username cannot longger than 30 characters or empty',
-				}
-		return res
+		# 'msg': 'Username cannot longger than 30 characters or empty',
+		return False
 
 	# valid username should only contain Letters, digits, "-", "_" and "."
-	if not bool(re.match("^[A-Za-z0-9._-]*$", username)):
-		res = {
-				'status': False,
-				'msg': 'Valid username should only contain Letters, digits, "-", "_" and "."',
-				}
-		return res	
+	elif not bool(re.match("^[A-Za-z0-9._-]*$", username)):
+		# 'msg': 'Valid username should only contain Letters, digits, "-", "_" and "."',
+		return False
+
+	else:
+		return True
+
+
+def is_username_available(username):
+	"""
+	Method to verify if username is available
+	Return type: bool
+	Return: False/True
+	"""
 
 	# valid username should be unique
 	if User.objects.filter(username=username).exists():
-		res = {
-				'status': False,
-				'msg': 'Username already exist',
-				}
-		return res
+		# 'msg': 'Username already exist',
+		return False
 
 	# available username
-	res = {
-			'status': True,
-			'msg': 'username is available'
-			}
-	return res
+	else:
+		return True
 
 
 def is_password_valid(password):
 	"""
 	Method to verify password
 	Valid password should no less than 6 characters
-	Return type: dict
-	Return: {'status': bool, 'msg': str}
+	Return type: bool
+	Return: False/True
 	"""
 	# valid password length should between 6(6 included) ~ 30
-	if len(username) < 6 or len(username) > 30:
-		res = {
-				'status': False,
-				'msg': 'Password required no less than 6 characters',
-				}
-		return res
+	if len(password) < 6 or len(password) > 30:
+		# 'msg': 'Password required no less than 6 characters',
+		return False
 
 	# available password
-	res = {
-			'status': True,
-			'msg': 'Valid password'
-			}
-	return res
+	#'msg': 'Valid password'
+	return True
