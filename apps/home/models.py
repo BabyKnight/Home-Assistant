@@ -19,6 +19,8 @@ class UserProfile(models.Model):
 		address = models.CharField(null=True, blank=True, max_length=50)
 		phone = models.CharField(null=True, blank=True, max_length=11)
 		login_ip = models.GenericIPAddressField(null=True, blank=True)
+		# device_list = moedls.OneToOneField(XXX, related_name='devices')
+		is_at_home = models.BooleanField(null=True, blank=True)
 
 		@property
 		def full_name(self):
