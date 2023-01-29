@@ -55,12 +55,10 @@ The purpose of this document mainly describes the POR features with the latest v
 
   - Add/delete/modify Rooms (新增，删除，修改房间配置)
 
+  - Floor Plan (房间平面图)
+
 - Device Management (设备管理)
 
   - Add/delete/modify Devices in specific room (新增，删除，修改特定房间的设备)
 
   - Device access (设备接入)
-
-- Floor Plan (建筑平面图)
-
-  - Floor Plan (房间平面图)
