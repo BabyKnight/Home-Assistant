@@ -10,7 +10,7 @@ Digital Home Assistant. A simple web application that can help manage a lot of p
 ![](docs/prototype.png)
 
 
-## Plan Of Record (POR)
+## Plan Of Record (POR) Features
 
 The purpose of this document mainly describes the POR features with the latest version of Digital Home Assistant in this repository. This POR scetion is expected to be updated regularly to reflect the web application implimentation on existing technology/features and new coming features.The following features will cover both fontend and back end features on this poject.
 
@@ -67,3 +67,46 @@ The purpose of this document mainly describes the POR features with the latest v
   - Add/delete/modify Devices in specific room (新增，删除，修改特定房间的设备)
 
   - Device access (设备接入)
+
+
+## Schedule and Milestone
+
+- Concept
+
+ - [x] Concept Phase Exit
+
+- Define & Plan
+
+ - [x] Featue Pov
+
+ - [x] NUDD
+
+ - [x] Proof of Concepts/Prototypes
+
+ - [x] Define Phase Exit
+
+ - [x] Plan Phase Exit
+
+- Develop
+
+ - [ ] X-rev (X00-00)
+
+ - [ ] FC (Feature Complete)
+
+ - [ ] BCO (Bug Cut Off)
+
+ - [ ] X-rev (X01-00)
+
+ - [ ] A-rev (A00-00)
+
+ - [ ] Develop Phase Exit
+
+- Launch
+
+ - [ ] Release
+
+ - [ ] Launch Phase Exit
+
+- Sustain
+
+ - [ ] EOL
