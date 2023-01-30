@@ -3,6 +3,11 @@
 Digital Home Assistant. A simple web application that can help manage a lot of personal & family stuff.
 
 
+## Gallery
+
+> Final release may differ from the prototype below.
+
+![](docs/prototype.png)
 
 
 ## Plan Of Record (POR)
