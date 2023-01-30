@@ -73,40 +73,42 @@ The purpose of this document mainly describes the POR features with the latest v
 
 - Concept
 
- - [x] Concept Phase Exit
+  - [x] **04/21/2021** Concept Phase Exit
 
 - Define & Plan
 
- - [x] Featue Pov
+  - [x] **08/18/2022** Featue Pov
 
- - [x] NUDD
+  - [x] **08/18/2022** NUDD
 
- - [x] Proof of Concepts/Prototypes
+  - [x] **01/29/2023** Proof of Concepts/Prototypes
 
- - [x] Define Phase Exit
+  - [x] **01/30/2023** Define Phase Exit
 
- - [x] Plan Phase Exit
+  - [x] **01/30/2023** Plan Phase Exit
 
 - Develop
 
- - [ ] X-rev (X00-00)
+  - [ ] **03/31/2023** X-rev (X00-00)
 
- - [ ] FC (Feature Complete)
+  - [ ] **04/14/2023** FC (Feature Complete)
 
- - [ ] BCO (Bug Cut Off)
+  - [ ] **04/28/2023** BCO (Bug Cut Off)
 
- - [ ] X-rev (X01-00)
+  - [ ] **05/12/2023** X-rev (X01-00)
 
- - [ ] A-rev (A00-00)
+  - [ ] **06/09/2023** A-can (A00-00)
 
- - [ ] Develop Phase Exit
+  - [ ] **06/23/2023** A-rev (A00-01)
+
+  - [ ] **06/30/2023** Develop Phase Exit
 
 - Launch
 
- - [ ] Release
+  - [ ] **07/07/2023** Release
 
- - [ ] Launch Phase Exit
+  - [ ] **07/14/2023** Launch Phase Exit
 
 - Sustain
 
- - [ ] EOL
+  - [ ] **N/A** EOL
