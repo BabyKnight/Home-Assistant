@@ -2,6 +2,28 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class UserPreference(models.Model):
+		"""
+		Class definition of UserPreference
+		"""
+		THEME_CHOICES = [
+				('D', 'Dark'),
+				('L', 'Light'),
+				('A', 'Auto'),
+		]
+		#profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE, related_name='preference')
+		layout = models.CharField(max_length=200, null=True, blank=True)
+		theme = models.CharField(max_length=1, choices=THEME_CHOICES, default='A')
+		language = models.CharField(max_length=10, default='en')
+
+		class Meta:
+			verbose_name = 'User Preference'
+
+		def __str__(self):
+			#return "< {}, {} Mode, {} >".format(self.profile.full_name, self.theme.capitalize(), self.language)
+			return "< {} Mode, {} >".format(self.theme.capitalize(), self.language)
+
+
 class UserProfile(models.Model):
 		"""
 		Class definition of UserProfile
@@ -20,6 +42,7 @@ class UserProfile(models.Model):
 		login_ip = models.GenericIPAddressField(null=True, blank=True)
 		# device_list = moedls.OneToOneField(XXX, related_name='devices')
 		is_at_home = models.BooleanField(null=True, blank=True)
+		preference = models.OneToOneField(UserPreference, on_delete=models.CASCADE, related_name='profile', null=True)
 
 		@property
 		def full_name(self):
