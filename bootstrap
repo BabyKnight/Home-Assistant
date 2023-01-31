@@ -23,6 +23,17 @@ function install_sys_pkg()
 				echo "[ NOT INSTALLED ]"
 				sudo apt install python3-venv
 		fi
+
+		# To make sure the script works in some new python3 environment like Ubuntu 22.04
+		# make sure libpq-dev  is installed
+		echo "Check if libpq-dev is installed..."
+		pkg='libpq-dev'
+		if [ `dpkg -l | grep $pkg | wc -l` -ne 0 ]; then
+				echo "[ INSTALLED ]"
+		else
+				echo "[ NOT INSTALLED ]"
+				sudo apt install libpq-dev
+		fi
 }
 
 
@@ -73,7 +84,7 @@ function boot()
     ln -sf environ/bin/activate
     . ./activate
 
-    pip install --upgrade -i $INDEX_URL --trusted-host $TRUSTED_HOST -r requirements.txt \
+    pip3 install --upgrade -i $INDEX_URL --trusted-host $TRUSTED_HOST -r requirements.txt \
         || die "Could not install python packages ! Cannot continue"
 
     # upgrade pip
