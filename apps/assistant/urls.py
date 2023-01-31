@@ -19,5 +19,6 @@ from django.urls import include, path
 urlpatterns = [
 		# resirect all request to the home app except admin
     path('', include('home.urls')),
+    path('house/', include('house.urls')),
     path('admin/', admin.site.urls),
 ]
