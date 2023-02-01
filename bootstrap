@@ -26,14 +26,14 @@ function install_sys_pkg()
 
 		# To make sure the script works in some new python3 environment like Ubuntu 22.04
 		# make sure libpq-dev  is installed
-		echo "Check if libpq-dev is installed..."
-		pkg='libpq-dev'
-		if [ `dpkg -l | grep $pkg | wc -l` -ne 0 ]; then
-				echo "[ INSTALLED ]"
-		else
-				echo "[ NOT INSTALLED ]"
-				sudo apt install libpq-dev
-		fi
+		#echo "Check if libpq-dev is installed..."
+		#pkg='libpq-dev'
+		#if [ `dpkg -l | grep $pkg | wc -l` -ne 0 ]; then
+		#		echo "[ INSTALLED ]"
+		#else
+		#		echo "[ NOT INSTALLED ]"
+		#		sudo apt install libpq-dev
+		#fi
 }
 
 
