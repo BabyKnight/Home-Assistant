@@ -44,11 +44,19 @@ class Device(models.Model):
 		"""
 		Class definition of Device
 		"""
+		STATUS_CHOICES = [
+				('UNK', 'Unknown'),
+				('ON', 'Online'),
+				('OFF', 'Offline'),
+				('INIT', 'Initialization'),
+				('CNT', 'Connecting'),
+		]
+
 		room = models.ForeignKey(Room, on_delete=models.CASCADE, null=True, blank=True)
 		name = models.CharField(max_length=30, blank=False, null=False, unique=True)
 		#owner = 
-		mac_address = models.CharField(max_length=16, blank=True, null=True)
-		status = models.CharField(max_length=20, blank=True, null=True)
+		mac_address = models.CharField(max_length=12, blank=True, null=True)
+		status = models.CharField(max_length=6, choices=STATUS_CHOICES, default='UNK')
 
 		class Meta:
 			verbose_name = 'Device'
