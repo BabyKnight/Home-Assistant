@@ -35,9 +35,10 @@ class UserProfile(models.Model):
 		]
 
 		user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+		address = models.CharField(null=True, blank=True, max_length=50)
+		avatar = models.CharField(max_length=30, blank=False, null=False, default='default_avatar.jpg')
 		birthday = models.DateTimeField(null=True, blank=True)
 		gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='U')
-		address = models.CharField(null=True, blank=True, max_length=50)
 		phone = models.CharField(null=True, blank=True, max_length=11)
 		login_ip = models.GenericIPAddressField(null=True, blank=True)
 		# device_list = moedls.OneToOneField(XXX, related_name='devices')
