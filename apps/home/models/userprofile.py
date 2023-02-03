@@ -43,7 +43,7 @@ class UserProfile(models.Model):
 		login_ip = models.GenericIPAddressField(null=True, blank=True)
 		# device_list = moedls.OneToOneField(XXX, related_name='devices')
 		is_at_home = models.BooleanField(null=True, blank=True)
-		# #TODO temporary change file blank and null equal True, but actually should auto create a onetoone instance,will update later
+		# will auto create a user preference config when create user profile
 		preference = models.OneToOneField(UserPreference, on_delete=models.CASCADE, related_name='profile', blank=True, null=True)
 
 		@property
@@ -51,8 +51,22 @@ class UserProfile(models.Model):
 				# The user is identified by user name or email address
 				return "{} {}".format(self.user.first_name, self.user.last_name)
 
+		def save(self, *args, **kwargs):
+			"""
+			Override the default save method, create UserPreference instance by default
+			"""
+			# auto create an user preference when create user profile, all preference keeps default
+			preference = UserPreference()
+			preference.save()
+			self.preference = preference
+			super(UserProfile, self).save(*args, **kwargs)
+
 		class Meta:
 			verbose_name = 'User Profile'
 
 		def __str__(self):
-			return "<{}: {}, {}>".format(self.user.id, self.user.username, self.full_name)
+			return "<{}, {}, {}>".format(
+					self.user.id,
+					self.user.username,
+					self.full_name
+					)
