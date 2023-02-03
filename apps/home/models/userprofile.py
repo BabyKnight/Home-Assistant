@@ -21,7 +21,7 @@ class UserPreference(models.Model):
 
 		def __str__(self):
 			#return "< {}, {} Mode, {} >".format(self.profile.full_name, self.theme.capitalize(), self.language)
-			return "< {} Mode, {} >".format(self.theme.capitalize(), self.language)
+			return "<{} Mode, {}>".format(self.get_theme_display(), self.language)
 
 
 class UserProfile(models.Model):
@@ -43,7 +43,8 @@ class UserProfile(models.Model):
 		login_ip = models.GenericIPAddressField(null=True, blank=True)
 		# device_list = moedls.OneToOneField(XXX, related_name='devices')
 		is_at_home = models.BooleanField(null=True, blank=True)
-		preference = models.OneToOneField(UserPreference, on_delete=models.CASCADE, related_name='profile', null=True)
+		# #TODO temporary change file blank and null equal True, but actually should auto create a onetoone instance,will update later
+		preference = models.OneToOneField(UserPreference, on_delete=models.CASCADE, related_name='profile', blank=True, null=True)
 
 		@property
 		def full_name(self):
@@ -54,4 +55,4 @@ class UserProfile(models.Model):
 			verbose_name = 'User Profile'
 
 		def __str__(self):
-			return "{}: - {}".format(self.user.id, self.full_name)
+			return "<{}: {}, {}>".format(self.user.id, self.user.username, self.full_name)
