@@ -11,17 +11,25 @@ class UserPreference(models.Model):
 				('L', 'Light'),
 				('A', 'Auto'),
 		]
+		CATE_CHOICES = [
+				('C', 'Customized'),
+				('D', 'Default'),
+		]
 		#profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE, related_name='preference')
 		layout = models.CharField(max_length=200, null=True, blank=True)
 		theme = models.CharField(max_length=1, choices=THEME_CHOICES, default='A')
+		category = models.CharField(max_length=1, choices=CATE_CHOICES, default='D')
 		language = models.CharField(max_length=10, default='en')
 
 		class Meta:
 			verbose_name = 'User Preference'
 
 		def __str__(self):
-			#return "< {}, {} Mode, {} >".format(self.profile.full_name, self.theme.capitalize(), self.language)
-			return "<{} Mode, {}>".format(self.get_theme_display(), self.language)
+			return "<{}, {}, {} Settings>".format(
+					self.id,
+					self.profile.user.username,
+					self.get_category_display(),
+					)
 
 
 class UserProfile(models.Model):
