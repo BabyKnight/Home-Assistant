@@ -26,7 +26,8 @@ class Event(models.Model):
 			verbose_name = 'Event'
 
 		def __str__(self):
-			return "<{}, {}>".format(
-					self.category,
+			return "<{}, {}, {}>".format(
+					self.get_status_display(),
+					self.get_category_display(),
 					self.detail[:20],
 					)
