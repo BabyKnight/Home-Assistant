@@ -21,6 +21,7 @@ class Event(models.Model):
 		detail = models.CharField(null=True, blank=True, max_length=200)
 		category = models.CharField(max_length=3, blank=False, null=False, choices=CATEGORY_CHOICES, default='U')
 		status = models.CharField(max_length=3, blank=False, null=False, choices=STATUS_CHOICES, default='T')
+		tag = models.CharField(null=True, blank=True, max_length=30)
 		location = models.CharField(null=True, blank=True, max_length=50)
 		deadline = models.DateTimeField(null=True, blank=True)
 		reporter = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='reporter')
@@ -28,11 +29,11 @@ class Event(models.Model):
 		created_time = models.DateTimeField(default=datetime.now)
 		closed_time = models.DateTimeField(null=True, blank=True)
 		last_update_time = models.DateTimeField(null=True, blank=True)
-		tag = models.CharField(null=True, blank=True, max_length=30)
 
 		def save(self, *args, **kwargs):
 			"""
-			Override the default save method, Set the last updated time as the timestamp when the instance saved
+			Override the default save method,
+			Set the last updated time as the timestamp when the instance saved
 			"""
 			self.last_update_time = datetime.now()
 			super(Event, self).save(*args, **kwargs)
