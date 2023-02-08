@@ -64,9 +64,10 @@ class UserProfile(models.Model):
 			Override the default save method, create UserPreference instance by default
 			"""
 			# auto create an user preference when create user profile, all preference keeps default
-			preference = UserPreference()
-			preference.save()
-			self.preference = preference
+			if self.preference is None:
+				preference = UserPreference()
+				preference.save()
+				self.preference = preference
 			super(UserProfile, self).save(*args, **kwargs)
 
 		class Meta:
