@@ -25,11 +25,11 @@ class Event(models.Model):
 		deadline = models.DateTimeField(null=True, blank=True)
 		reporter = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='reporter')
 		assignee = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='assignee')
-		created_time = models.DateTimeField(null=True, blank=True)
+		created_time = models.DateTimeField(default=datetime.now)
 		closed_time = models.DateTimeField(null=True, blank=True)
 		last_update_time = models.DateTimeField(null=True, blank=True)
 		tag = models.CharField(null=True, blank=True, max_length=30)
-		
+
 		def save(self, *args, **kwargs):
 			"""
 			Override the default save method, Set the last updated time as the timestamp when the instance saved
