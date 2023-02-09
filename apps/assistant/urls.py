@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-		# resirect all request to the home app except admin
+	# redirect all requests to other apps and keep this app as router only
     path('', include('home.urls')),
+    path('home/', include('house.urls')),
     path('house/', include('house.urls')),
+    path('events/', include('house.urls')),
     path('admin/', admin.site.urls),
 ]
