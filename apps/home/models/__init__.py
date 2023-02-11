@@ -1,2 +1,2 @@
-from .userprofile import UserProfile
-from .userprofile import UserPreference
+from .models import UserProfile
+from .models import UserPreference
