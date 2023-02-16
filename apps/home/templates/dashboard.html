@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Welcome Home - Dashboard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Dashboard of Home Assistant" />
+		<meta name="author" content="Vincent Hu" />
+
+  		<link rel="stylesheet" href="css/bootstrap.min.css">
+  		<link rel="stylesheet" href="css/vct-icon.css">
+  		<link rel="stylesheet" href="css/index.css">
+  		<style type="text/css">
+  		
+  			body{
+  				width: 100%;
+  				height: 100%;
+  			}
+  			.dashboard{
+  				width: 100%;
+  				height: 100%;
+  				display: flex;
+  			}
+  			/* left Pannel as navbar */
+  			.left-navi {
+  				width: 80px;
+  				height: 100%;
+  				border-right-style: solid;
+    			border-right-width: 1.5px;
+    			border-right-color: #000000;
+    			display: inline-block;
+  			}
+  			/* current user avatar in the left Nav bar */
+  			.avatar-wrapper{
+  				height: 46px;
+     			width: 46px;
+     			margin: 14px auto 14px auto;
+     			-webkit-border-radius: 50%;
+     			-moz-border-radius: 50%;
+     			-ms-border-radius: 50%;
+     			border-radius: 50%;
+     			border:3px solid #59d575;
+  			}
+  			.profile-thumb{
+  				background-size: cover !important;
+     			background-position: center center;
+     			background-repeat: no-repeat;
+     			position: relative;
+     			height: 40px;
+     			width: 40px;
+     			margin: auto;
+     			-webkit-border-radius: 50%;
+     			-moz-border-radius: 50%;
+     			-ms-border-radius: 50%;
+     			border-radius: 50%;
+  			}
+  			
+  			/* Modules icon in the left Nav Bar */
+  			.nav-icon-list{
+  				width: 100%;
+  				height: calc(100vh - 134px);
+  				padding: 40px 0;
+  			}
+  			.nav-module{
+  				height: 80px;
+  			}
+  			.nav-module:hover {
+  				background-color: #f6f6f6;
+  			}
+  			.module-title{
+  				text-align: center;
+  				height: 20px;
+  			}
+  			.module-title > p{
+  				color: #ac49cf;
+     			font-family: "Space Mono", Arial, serif;
+     			letter-spacing: 0.03em;
+     			font-weight: 600;
+     			font-size: 12px;
+     			text-rendering: optimizeLegibility;
+     			margin-bottom: 0;
+  			}
+  			.module-icon{
+  				height: 48px;
+  			}
+  			.module-btn{
+  				background-size: cover !important;
+  				background-position: center center;
+  				height: 48px;
+  				width: 48px;
+  				margin: auto;
+  			}
+  			.current-module-flag{
+  				width: 8px;
+  				height: 8px;
+  				background-color: #ac49cf;
+  				-webkit-border-radius: 50%;
+     			-moz-border-radius: 50%;
+     			-ms-border-radius: 50%;
+     			border-radius: 50%;
+     			margin: auto;
+  			}
+
+  			/* show title and dot in the bottom for active module,
+  			   show a line in the right to mark as active as well */
+  			.module-active > .module-title, .module-active > .current-module-flag{
+  				visibility: visible;
+  			}
+  			.module-active > .module-icon{
+  				border-right-style: solid;
+    			border-right-width: 3px;
+    			border-right-color: #ac49cf;
+    		}
+    		/* hide title and cot in the bottom for inactive module */
+  			.module-inactive > .module-title, .module-inactive > .current-module-flag{
+  				visibility: hidden;
+  			}
+  			.module-inactive > .module-icon{
+  				border-right-style: none;
+    		}
+
+  			/* Setings icon in the left Nav Bar */
+  			.setting-icon{
+  				height: 60px;
+  				width: 100%;
+  			}
+  			.setting-icon:hover{
+  				background-color: #f6f6f6;
+  			}
+  			.settings-btn{
+  				background-size: cover !important;
+  				background-position: center center;
+  				height: 40px;
+  				width: 40px;
+  				margin: auto;
+  			}
+
+  			/* right pannel as main board */
+  			.main-board{
+  				height: 100%;
+  				width: 100%;
+  				background-color: green;
+  				display: inline-block;
+  			}
+  			.container{
+  				width: 100%;
+  				height: 100%;
+  			}
+  			.row{
+  				width: 100%;
+  				height: 100%;
+  			}
+
+  		</style>
+	</head>
+
+	<body>
+
+	<div class="dashboard">
+
+		<div class="left-navi" id="sidebar">
+			<div class="avatar-wrapper"> <!-- avatar wapper. use border as status -->
+				<div class="profile-thumb" style="background: url(images/profile-thumb.jpg);"></div>
+			</div>
+			
+			<div class="nav-icon-list">
+				<div class="nav-module module-active" id="dashboard">
+					<div class="module-title">
+						<p>Home</p>
+					</div>
+					<div class="module-icon">
+						<div class="module-btn" style="background: url(images/icon_dashboard.png);"></div>
+					</div>
+					<div class="current-module-flag">
+						
+					</div>
+				</div>
+				<div class="nav-module module-inactive" id="message">
+					<div class="module-title">
+						<p>Message</p>
+					</div>
+					<div class="module-icon">
+						<div class="module-btn" style="background: url(images/icon_msg.png);"></div>
+					</div>
+					<div class="current-module-flag">
+						
+					</div>
+				</div>
+				<div class="nav-module module-inactive" id="hostory">
+					<div class="module-title">
+						<p>History</p>
+					</div>
+					<div class="module-icon">
+						<div class="module-btn" style="background: url(images/icon_history.png);"></div>
+					</div>
+					<div class="current-module-flag">
+						
+					</div>
+				</div>
+				<div class="nav-module module-inactive" id="statistics">
+					<div class="module-title">
+						<p>Statistics</p>
+					</div>
+					<div class="module-icon">
+						<div class="module-btn" style="background: url(images/icon_statistics.png);"></div>
+					</div>
+					<div class="current-module-flag">
+						
+					</div>
+				</div>
+				<div class="nav-module module-inactive" id="user">
+					<div class="module-title">
+						<p>User</p>
+					</div>
+					<div class="module-icon">
+						<div class="module-btn" style="background: url(images/icon_user.png);"></div>
+					</div>
+					<div class="current-module-flag">
+						
+					</div>
+				</div>
+				<div class="nav-module module-inactive" id="house">
+					<div class="module-title">
+						<p>House</p>
+					</div>
+					<div class="module-icon">
+						<div class="module-btn" style="background: url(images/icon_house.png);"></div>
+					</div>
+					<div class="current-module-flag">
+						
+					</div>
+				</div>
+				<div class="nav-module module-inactive" id="device">
+					<div class="module-title">
+						<p>Device</p>
+					</div>
+					<div class="module-icon">
+						<div class="module-btn" style="background: url(images/icon_device.png);"></div>
+					</div>
+					<div class="current-module-flag">
+						
+					</div>
+				</div>
+			</div>
+			<div class="setting-icon" id="user-setting">
+				<div class="settings-btn" style="background: url(images/icon_setting.png);"></div>
+			</div>
+
+		</div> <!-- left-navi -->
+		
+
+		<div class="main-board">
+
+
+			<input id = "btn1" type="submit" value="Close"/>
+		</div> <!-- main-board -->
+
+
+	</div> <!-- END of dashboard -->
+
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+    		$("#btn1").click(function(){
+        		$("#sidebar").toggle(200)
+    		}); 
+
+    		/* button click event in the left Nav bar, mark current module and direct to the specific page */
+    		$(".nav-module").click(function(){
+        		$(".module-active").addClass("module-inactive");
+        		$(".module-active").removeClass("module-active");
+        		$(this).removeClass("module-inactive");
+        		$(this).addClass("module-active");
+    		});
+
+		});
+	</script>
+
+
+	</body>
+</html>
